@@ -1,0 +1,57 @@
+kSNP3 -in FINAL_kSNP3_5-23-2017_ABC89-outbrk_input.txt -outdir kSNP3_5-31-2017_ABC89-FacA -k 19 -core | tee Run1Log
+
+cp core_SNPs_matrix.fasta ../RAxML_5-31-2017_ABC89-FacA/kSNP3_5-31-2017_ABC89-FacA_CORE.fna
+
+##Run RAxML with the Lewis ascertainment bias correction
+raxmlHPC-PTHREADS -T 12 -m ASC_GTRGAMMA --asc-corr=lewis -p 1234 -N 75 -s kSNP3_1-6-2017_ABC89-outbrk_core.fna -n T1
+raxmlHPC-PTHREADS -T 12 -m ASC_GTRGAMMA --asc-corr=lewis -p 1234 -b 12345 -N 500 -s kSNP3_1-6-2017_ABC89-outbrk_core.fna -n T2
+raxmlHPC-PTHREADS -T 12 -m ASC_GTRGAMMA --asc-corr=lewis -p 1234 -f b -t RAxML_bestTree.T1 -z RAxML_bootstrap.T2 -n T3
+
+cp RAxML_bipartitions.T3 ../iTOL_visualization_12-21-2016/ABC89_FacA_RAxML-lewis_5-31-2017.nwk
+bash RAxML_nameChange.sh
+
+
+
+
+
+#########################################################################################
+
+
+
+
+
+###OLD STUFF###
+grep -f grep_sample_list.txt /scicomp/groups/OID/NCIRD/DBD/RDB/Strep_Lab/extract_query_seq/All_GAS_Paths_12-22-2016.txt | awk -F"/" '{print $14"\t"$0"\t"$14}' | sed "s/-emm89$//g;s/-A-ABC$//g;s/-A-GAS$//g;s/-A$//g;s/-GAS$//g"
+
+Remove the following duplicate samples:
+      2 0063-16
+      2 0068-16
+      2 0070-16
+      2 0071-16
+      2 0072-16
+      2 0073-16
+      2 0075-16
+      2 0079-16
+      2 0080-16
+      2 0081-16
+      2 0082-16
+      2 0083-16
+      2 0088-16
+      2	0089-16
+
+##Add a '-A' to the state ID's so that all sample names will have 1 dash
+cat FINAL_kSNP3_1-4-2017_ABC89-outbrk_input.txt | sed 's/_\([0-9][0-9]\)$/-\1/g' | sed 's/\(2015[0-9]\{4\}\)$/\1-A/g' > FINAL_kSNP3_1-4-2017_ABC89-outbrk_input2.txt
+mv FINAL_kSNP3_1-4-2017_ABC89-outbrk_input2.txt FINAL_kSNP3_1-4-2017_ABC89-outbrk_input.txt
+
+D1
+kSNP3 -in FINAL_kSNP3_1-4-2017_ABC89-outbrk_input.txt -outdir kSNP3_1-4-2017_ABC89-community-outbrk -k 19 -core | tee Run1Log
+
+##Convert the kSNP3 core SNP alignment to a phylip format
+mv core_SNPs_matrix.fasta kSNP3_1-6-2017_ABC89-outbrk_core.fna
+readal -in kSNP3_1-6-2017_ABC89-outbrk_core.fna -out kSNP3_1-6-2017_ABC89-outbrk_core.phylip -phylip
+
+##Run RAxML with the Lewis ascertainment bias correction
+raxmlHPC-PTHREADS -T 12 -m ASC_GTRGAMMA --asc-corr=lewis -p 1234 -N 75 -s kSNP3_1-6-2017_ABC89-outbrk_core.phylip -n T1
+raxmlHPC-PTHREADS -T 12 -m ASC_GTRGAMMA --asc-corr=lewis -p 1234 -b 12345 -N 500 -s kSNP3_1-6-2017_ABC89-outbrk_core.phylip -n T2
+raxmlHPC-PTHREADS -T 12 -m ASC_GTRGAMMA --asc-corr=lewis -p 1234 -f b -t RAxML_bestTree.T1 -z RAxML_bootstrap.T2 -n T3
+

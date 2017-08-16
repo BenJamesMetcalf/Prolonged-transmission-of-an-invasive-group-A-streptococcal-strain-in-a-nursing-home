@@ -1,0 +1,20 @@
+
+Performing single analysis.
+        File: BaTS-FINAL_ALL-outbrk_MASK-daGm_mugsy_emm89_12-19-2016.nex
+        Null replicates: 500
+        Maximum number of discrete character states: 2
+
+analysing... 9001 trees, with 2 states
+analysing observed (using obs state data)
+9001 8551
+9001 8551
+9001 8551
+9001 8551
+Statistic       observed mean   lower 95% CI    upper 95% CU    null mean       lower 95% CI    upper 95% CI    significance
+AI      1.3662009239196777      0.8274480700492859      1.9855258464813232      3.0606088638305664      2.3182859420776367      3.773416757583618       0.0
+PS      10.373291969299316      8.0     12.0    17.164169311523438      14.930896759033203      19.056215286254883      0.0
+MC (state 0)    4.652149677276611       3.0     7.0     2.471454381942749       1.8781245946884155      3.25541615486145        0.009999990463256836
+MC (state 1)    6.264193058013916       3.0     10.0    4.423434257507324       3.4900567531585693      5.807910442352295       0.041999995708465576
+done
+
+Done.

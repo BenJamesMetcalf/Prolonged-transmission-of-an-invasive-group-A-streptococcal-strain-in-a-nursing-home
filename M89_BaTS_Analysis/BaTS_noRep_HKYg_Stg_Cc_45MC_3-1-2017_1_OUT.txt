@@ -1,0 +1,23 @@
+Command:
+java -jar ~/tool_install_testing/test_BaTS/BaTS/BaTS_beta_build2/BaTS_beta_build2.jar single BaTS-FINAL_noRep_MASK-daGm_mugsy_emm89_3-1-2017.nex 500 2
+
+Output:
+Performing single analysis.
+        File: BaTS-FINAL_noRep_MASK-daGm_mugsy_emm89_3-1-2017.nex
+        Null replicates: 500
+        Maximum number of discrete character states: 2
+
+analysing... 9001 trees, with 2 states
+analysing observed (using obs state data)
+9001 8551
+9001 8551
+9001 8551
+9001 8551
+Statistic       observed mean   lower 95% CI    upper 95% CU    null mean       lower 95% CI    upper 95% CI    significance
+AI      1.491074800491333       0.9119074940681458      2.1240384578704834      2.726778745651245       2.0860133171081543      3.3974483013153076      0.001999974250793457
+PS      10.54449462890625       8.0     13.0    15.083330154418945      13.158427238464355      16.74125099182129       0.001999974250793457
+MC (state 0)    3.8639039993286133      3.0     6.0     2.3005080223083496      1.6967003345489502      3.068436861038208       0.0899999737739563
+MC (state 1)    6.1605377197265625      3.0     10.0    4.6895270347595215      3.6147093772888184      6.107876777648926       0.0559999942779541
+done
+
+Done.
